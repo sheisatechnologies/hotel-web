@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aranyak Homestay Preloader</title>
+    <style>
+        /* Reset body margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Preloader styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+        }
+
+        .left-wrapper, .right-wrapper {
+            position: fixed;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1000;
+        }
+
+        .left-wrapper {
+            left: 0;
+        }
+
+        .right-wrapper {
+            right: 0;
+        }
+
+        .preloader-text {
+            font-size: 2rem;
+            color: #fff;
+            display: flex;
+            gap: 0.1rem;
+            position: relative;
+            z-index: 1001;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .preloader-text span {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .content {
+            display: none; /* Hide content initially */
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="left-wrapper"></div>
+        <div class="right-wrapper"></div>
+        <div class="preloader-text">
+            <span>A</span><span>r</span><span>a</span><span>n</span><span>y</span><span>a</span><span>k</span> 
+            <span>H</span><span>o</span><span>m</span><span>e</span><span>s</span><span>t</span><span>a</span><span>y</span>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Main content of the page -->
+        <h1>Welcome to Aranyak Homestay</h1>
+        <p>Enjoy a peaceful stay surrounded by nature.</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            // Slide wrappers outward
+            gsap.to(".left-wrapper", { 
+                x: "-100%", 
+                duration: 1, 
+                ease: "power2.inOut" 
+            });
+            gsap.to(".right-wrapper", { 
+                x: "100%", 
+                duration: 1, 
+                ease: "power2.inOut", 
+                onComplete: () => {
+                    // Reveal the preloader text after wrappers slide out
+                    gsap.to(".preloader-text", { 
+                        opacity: 1, 
+                        scale: 1, 
+                        duration: 0.6 
+                    });
+
+                    gsap.to(".preloader-text span", {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        stagger: 0.1,
+                        ease: "power2.out",
+                    });
+
+                    // Hide preloader after animation and show content
+                    setTimeout(() => {
+                        gsap.to(".preloader", {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                document.querySelector(".preloader").style.display = "none";
+                                document.querySelector(".content").style.display = "block";
+                                gsap.from(".content", { opacity: 0, duration: 1 });
+                            }
+                        });
+                    }, 2500); // Adjust timing based on animation duration
+                }
+            });
+        });
+    </script>
+</body>
+</html>
