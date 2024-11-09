@@ -780,19 +780,20 @@ input::placeholder,
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   text-decoration: none;
-  padding: 6px 20px;
+  padding: 46px 20px;
   line-height: 25px;
   background-color: transparent;
   color: #fff;
   font-size: 15px;
   font-weight: 500;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   border-radius: 10px;
   letter-spacing: 1px;
 }
 .rx-btn-one:hover {
-  background-color: #9d7e54;
-  border-color: #9d7e54;
+ color: #9d7e54;
+  
+  
 }
 
 .rx-btn-two {
