@@ -780,7 +780,7 @@ input::placeholder,
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   text-decoration: none;
-  padding: 46px 20px;
+  /* padding: 46px 20px; */
   line-height: 25px;
   background-color: transparent;
   color: #fff;
@@ -1142,6 +1142,7 @@ header .header-fixed {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+          align-items: flex-start;
 }
 .rx-inner-menu-desk .rx-main-menu ul {
   display: -webkit-box;
